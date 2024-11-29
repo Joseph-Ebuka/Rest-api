@@ -10,12 +10,12 @@ export const register = async (
     const { email, password, username } = req.body;
 
     if (!email || !password || !username) {
-      return res.sendStatus(400);
+      return res.status(400).json({ error: "Invalid request" });
     }
 
     const existingUser = await getUserByEmail(email);
     if (existingUser) {
-      return res.sendStatus(400);
+      return res.status(400).json({ error: "User already exists" });
     }
 
     const salt = random();
