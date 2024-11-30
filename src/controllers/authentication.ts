@@ -53,8 +53,6 @@ export const login = async (
     }
 
     const expectedHash = authentication(user.authentication.salt, password);
-    console.log(expectedHash.toString('hex'));
-    console.log(user.authentication.password);
     if (user.authentication.password !== expectedHash.toString('hex')) {
       return res.status(403).json({ error: "Invalid password" });
     }
